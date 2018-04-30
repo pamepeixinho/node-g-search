@@ -4,7 +4,7 @@ This is a fork of `node-g-search` package to use in the #hackathonglobo2018 proj
 
 ## Change
 
-The main change here is pass the data of the publication too when make the google's search.
+The main change here is pass the *date of the publication* too when make the google's search (https://github.com/pamepeixinho/node-g-search/commit/58b9f19e5c20626b611bb72f8cdd21d78a2469b3).
 
 ## Installation
 
