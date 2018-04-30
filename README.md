@@ -1,96 +1,31 @@
-# Node Google Search Crawler
+# [FORKED] Node Google Search Crawler
 
-[![Join the chat at https://gitter.im/LinZap/node-g-search](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/LinZap/node-g-search?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This is a fork of `node-g-search` package to use in the #hackathonglobo2018 project (https://github.com/pamepeixinho/backend-hackathon-globo-2018 and https://github.com/pamepeixinho/pwa-hackathon-globo-2018).
 
-Node Google Search Crawler
+## Change
 
-## Introduction
-```js
-var g = require('node-g-search');
-
-g.search("bon jovi")
-.then(function(d){
-	
-	if(d.data)
-		for (var i = 0; i < d.data.length; i++) {
-			console.log(d.data[i].title);
-			console.log(d.data[i].href);
-			console.log(d.data[i].des);
-		}
-})
-
-```
+The main change here is pass the data of the publication too when make the google's search.
 
 ## Installation
 
 	npm install --save node-g-search
 
+## How to use it ?
 
-## Search API
-
-### g.search(q[,page[,retry]])
-
-### g.searchAll(q[,retry])
-
-### g.pg()
- 
- 
-## Connect to PostgreSQL
-[node-postgres](https://github.com/brianc/node-postgres) built-in
-and complete access layer to node-postgres via Promises/A+.
+Just put this 11 lines and run `node MYFILE.js` and you're going to see the results
 
 ```js
-var g = require('node-g-search'),
-    db = g.pg();
+const g = require('node-g-search');
 
-var p = db.connect({
-	user:'user',
-	password: 'pwd',
-	host: 'localhost',
-	dbname: 'dbname'
-})
-
-.then(function(client){
-
-	return db.query('select ?::int+?::int as ans',[10,20])
-	.then(function(res){
-		console.log(res.rows[0].ans);
-		return res.rows[0].ans;
-	},function(err){
-		console.log('%s',err);
-	})
-	
-})
-
+g.search("memes trump")
+    .then((d) => {
+	if(d.data)
+	   for (var i = 0; i < d.data.length; i++) {
+		console.log(d.data[i].title);
+		console.log(d.data[i].href);
+		console.log(d.data[i].des);
+		console.log(d.data[i].date);
+	    }
+});
 ```
-  
-   
-  
-  
-  
-## Pg Client API
 
-### db.connect(option)
-```js
-{
-	user:'user',
-	password: 'pwd',
-	host: 'localhost',
-	dbname: 'dbname'
-}
-```
-  
-### db.query(sql [,params]) 
-use [Prepared Statements](https://github.com/brianc/node-postgres/wiki/Prepared-Statements)   
-`$1`,`$2`or`?` 
-return  Promise<[result](https://github.com/brianc/node-postgres/wiki/Query#result-object)> object
-  
-```sql
-	 select * from table where id=?
-```
-  
-### db.queryIgnore(sql [,params [,retry]]) 
-  
- 
-### db.close()
-## License BSD
